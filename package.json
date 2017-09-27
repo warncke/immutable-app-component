@@ -1,0 +1,27 @@
+{
+  "author": "Ersun Warncke <ersun.warncke@gmail.com>",
+  "dependencies": {
+    "immutable-core": "^2.2.5",
+    "immutable-global": "^0.1.0"
+  },
+  "description": "Dynamic UI components for Immutable App",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
+    "mocha": "3.5.3"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "license": "MIT",
+  "main": "lib/immutable-app-component.js",
+  "name": "immutable-app-component",
+  "repository": "warncke/immutable-app-component",
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "0.0.1"
+}
