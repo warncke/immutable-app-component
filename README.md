@@ -4,9 +4,13 @@ Immutable App Component integrates with the
 [Immutable App](https://www.npmjs.com/package/immutable-app) ecosystem to
 provide a framework for defining dynamic UI components.
 
-Immutable App Component provides functionality that is similar to
-[React](https://facebook.github.io/react/), [Angular](https://angular.io/) or
-[Vue](https://vuejs.org/).
+Immutable App Commponent is an Immutable App module that provides the client
+side runtime for components and the endpoints that clients use to communicate
+with the server.
+
+[ImmutableCoreComponent](https://www.npmjs.com/package/immutable-core-component)
+is used to instantiate component classes and provides much of the functionality
+that Immutable App Component exposes.
 
 ## Why use Immutable App Component
 
@@ -80,10 +84,10 @@ directories like `app`, `assets`, `helpers` and `partials` are stored.
 
 In this example the `my-component.server.js` file contains the server side
 component definition which must be a plain object that can be passed to
-`new ImmutableAppComponentServer`.
+`new ImmutableCoreComponent`.
 
 `my-component.client.js` contains the client side component definition which
-must be a plain object that can be passed to `new ImmutableAppComponentClient`
+must be a plain object that can be passed to `new ImmutableAppComponent`
 in the client browser.
 
 `my-component.hbs` is the component template. This template will be use to
@@ -113,7 +117,7 @@ extended and overriden by other modules required later in your app.
     // controller
 
     function getPage (args) {
-        var myComponent = this.component.myComponent.new({ ... })
+        var myComponent = await this.component.myComponent.new({ ... })
 
         return {myComponent: myComponent}
     }
@@ -130,11 +134,11 @@ the `new` method is used to render the template.
 The component object has a `toString` method that renders the template so the
 component object can be placed in a template as a simple variable.
 
-## ImmutableAppComponentClient
+## ImmutableAppComponent
 
 Every component that is rendered on the server instantiates a new instance of
 that component on the client. All components are registered with the global
-`ImmutableAppComponentClient` instance which manages the components on the page
+`ImmutableAppComponent` instance which manages the components on the page
 and coordinates all communications with the server.
 
 Every component is given a unique id which will be the component name in param
@@ -143,9 +147,9 @@ appended if there are additional instances (my-component-1, my-component-2).
 
 ### Working with client component instances
 
-    var myComponent = ImmutableAppComponentClient.getComponent('my-component')
+    var myComponent = ImmutableAppComponent.getComponent('my-component')
 
-The `getComponent` method on the global ImmutableAppComponentClient instance
+The `getComponent` method on the global ImmutableAppComponent instance
 will return the component instance identified by its id.
 
 ### Client component instance methods
@@ -157,7 +161,6 @@ will return the component instance identified by its id.
 | refresh     | request data from server and re-render if changed              |
 | render      | render data on client                                          |
 | set         | set a component data property                                  |
-
 
 #### bind
 
@@ -225,7 +228,7 @@ component will be automatically re-rendered at the next interval.
 
 ### Component method hooks
 
-    myComponent.preRender = function (component, data) {
+    myComponent.preRender = function (data) {
         ...
     }
 
@@ -245,7 +248,7 @@ be taken to avoid overwriting hooks.
 
 #### preBind
 
-    myComponent.preBind = function (component, elementId, property) {
+    myComponent.preBind = function (elementId, property) {
         ...
     }
 
@@ -255,7 +258,7 @@ the bind will not be performed.
 
 #### preGet
 
-    myComponent.preGet = function (component, property) {
+    myComponent.preGet = function (property) {
         ...
     }
 
@@ -265,7 +268,7 @@ get. If `preGet` returns a value this value will be returned to the caller of
 
 #### preRefresh
 
-    myComponent.preRefresh = function (component, args) {
+    myComponent.preRefresh = function (args) {
         ...
     }
 
@@ -275,7 +278,7 @@ performed.
 
 #### preRender
 
-    myComponent.preRender = function (component, args) {
+    myComponent.preRender = function (args) {
         ...
     }
 
@@ -285,7 +288,7 @@ performed.
 
 #### preSet
 
-    myComponent.preSet = function (component, property, value) {
+    myComponent.preSet = function (property, value) {
         ...
     }
 
@@ -294,7 +297,7 @@ value to set. If `preSet` returns false the set will not be performed.
 
 #### postBind
 
-    myComponent.postBind = function (component, bind) {
+    myComponent.postBind = function (bind) {
         ...
     }
 
@@ -304,7 +307,7 @@ The return value of `postBind` is ignored.
 
 #### postGet
 
-    myComponent.postGet = function (component, property, value) {
+    myComponent.postGet = function (property, value) {
         ...
     }
 
@@ -314,7 +317,7 @@ to the caller of `get`.
 
 #### postRefresh
 
-    myComponent.postRefresh = function (component, args, data) {
+    myComponent.postRefresh = function (args, data) {
         ...
     }
 
@@ -324,7 +327,7 @@ value will be called to the caller of `refresh`.
 
 #### postRender
 
-    myComponent.postRender = function (component, args) {
+    myComponent.postRender = function (args) {
         ...
     }
 
@@ -333,14 +336,14 @@ any. Any return value will be ignored.
 
 #### postSet
 
-    myComponent.postSet = function (component, property, value) {
+    myComponent.postSet = function (property, value) {
         ...
     }
 
 `postSet` is called with the component instance, the property set, and the
 value set. Any return value will be ignored.
 
-## ImmutableAppComponentServer
+## ImmutableCoreComponent
 
 On the server side each component is backed by an
 [Immutable Core](https://www.npmjs.com/package/immutable-core) module with
@@ -359,12 +362,12 @@ they are called with.
 
 Alternatively you can do:
 
-    var component = new ImmutableAppComponentServer({
+    var component = new ImmutableCoreComponent({
         name: 'myComponent',
         ...
     })
 
-When the new ImmutableAppComponentServer instance is instantiated the component
+When the new ImmutableCoreComponent instance is instantiated the component
 name will be looked up in the global component register and the `new` method on
 the component module will be called with the original args.
 
