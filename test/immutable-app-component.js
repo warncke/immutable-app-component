@@ -12,13 +12,12 @@ const assert = chai.assert
 
 describe('immutable-app-component', function () {
 
+    beforeEach(function () {
+        
+    })
+
     it('should instantiate new component', function () {
-        var component = new ImmutableAppComponent({
-            name: 'foo',
-            server: {
-                new: () => {},
-            },
-        })
+
     })
 
 })

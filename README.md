@@ -248,13 +248,14 @@ be taken to avoid overwriting hooks.
 
 #### preBind
 
-    myComponent.preBind = function (elementId, property) {
+    myComponent.preBind = function (elementId, property, event) {
         ...
     }
 
-`preBind` is called with the component instance, the id of the element to be
-bound and the name of the property to bind to. If `preBind` returns `false`
-the bind will not be performed.
+`preBind` is called with the the id of the element to be bound, the name of the
+property to bind to, and the name of the event to bind to which may be `change`,
+`input` or `undefined` (both). If `preBind` returns `false` the bind will not be
+performed.
 
 #### preGet
 
@@ -262,9 +263,9 @@ the bind will not be performed.
         ...
     }
 
-`preGet` is called with the component instance and the name of the property to
-get. If `preGet` returns a value this value will be returned to the caller of
-`get` and `postGet` will be called.
+`preGet` is called with the name of the property to get. If `preGet` returns a
+value this value will be returned to the caller of `get` and `postGet` will be
+called.
 
 #### preRefresh
 
@@ -272,9 +273,8 @@ get. If `preGet` returns a value this value will be returned to the caller of
         ...
     }
 
-`preRefresh` is called with the component instance and the arguments to refresh
-if there were any. If `preRefresh` returns `false` the refresh will not be
-performed.
+`preRefresh` is called with the arguments to refresh if there were any. If
+`preRefresh` returns `false` the refresh will not be performed.
 
 #### preRender
 
@@ -282,18 +282,20 @@ performed.
         ...
     }
 
-`preRender` is called with the component instance and the arguments to render
-if there were any. If `preRender` returns `false` the render will not be
-performed.
+`preRender` is called with the arguments to render if there were any. If
+`preRender` returns `false` the render will not be performed.
 
 #### preSet
 
-    myComponent.preSet = function (property, value) {
+    myComponent.preSet = function (property, value, event) {
         ...
     }
 
-`preSet` is called with the component instance, the property to set, and the
-value to set. If `preSet` returns false the set will not be performed.
+`preSet` is called with the property to set, and the value to set. If `preSet`
+returns false the set will not be performed.
+
+If `preSet` is called from an event handler the `event` that triggered it will
+be passed as the optional third argument.
 
 #### postBind
 
@@ -301,9 +303,9 @@ value to set. If `preSet` returns false the set will not be performed.
         ...
     }
 
-`postBind` is called with the component instance and a data object containing
-information about the bind. `postBind` will not be called if the bind failed.
-The return value of `postBind` is ignored.
+`postBind` is called with a data object containing information about the bind.
+`postBind` will not be called if the bind failed. The return value of `postBind`
+is ignored.
 
 #### postGet
 
@@ -311,9 +313,8 @@ The return value of `postBind` is ignored.
         ...
     }
 
-`postGet` is called with the component instance, the name of the property, and
-the value retrieved. If `postGet` returns a value that value will be returned
-to the caller of `get`.
+`postGet` is called with the name of the property, and the value retrieved. If
+`postGet` returns a value that value will be returned to the caller of `get`.
 
 #### postRefresh
 
@@ -321,9 +322,9 @@ to the caller of `get`.
         ...
     }
 
-`postRefresh` is called with the component instance, the arguments to `refresh`
-and the data returned from the server. If `postRefresh` returns a value that
-value will be called to the caller of `refresh`.
+`postRefresh` is called with the arguments to `refresh` and the data returned
+from the server. If `postRefresh` returns a value that value will be called to
+the caller of `refresh`.
 
 #### postRender
 
@@ -331,17 +332,16 @@ value will be called to the caller of `refresh`.
         ...
     }
 
-`postRender` is called with the component instance and the args to `render` if
-any. Any return value will be ignored.
+`postRender` is called with the args to `render` if any. Any return value will
+be ignored.
 
 #### postSet
 
-    myComponent.postSet = function (property, value) {
+    myComponent.postSet = function (property, value, event) {
         ...
     }
 
-`postSet` is called with the component instance, the property set, and the
-value set. Any return value will be ignored.
+`postSet` is called with the property and value set and optionally the event that triggered the set. Any return value will be ignored.
 
 ## ImmutableCoreComponent
 
