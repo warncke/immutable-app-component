@@ -34,6 +34,27 @@ describe('immutable-app-component set', function () {
         assert.deepEqual(component.data, {foo: 'bar'})
     })
 
+    it('should set value for nested property with dot notation', function () {
+        // set value
+        assert.isTrue(component.set('foo.bar', 'bam', 'event'))
+        // check value
+        assert.deepEqual(component.data, {foo: {bar: 'bam'}})
+    })
+
+    it('should set value for nested property with array notation', function () {
+        // set value
+        assert.isTrue(component.set('foo.bar[0]', 'bam', 'event'))
+        // check value
+        assert.deepEqual(component.data, {foo: {bar: ['bam']}})
+    })
+
+    it('should set value for nested property with object notation', function () {
+        // set value
+        assert.isTrue(component.set('foo.bar[0].baz["wtf"]', 'bam', 'event'))
+        // check value
+        assert.deepEqual(component.data, {foo: {bar: [ {baz: {wtf: 'bam'} } ] }})
+    })
+
     it('should set clean:false', function () {
         // set value
         assert.isTrue(component.set('foo', 'bar', 'event'))
@@ -65,27 +86,6 @@ describe('immutable-app-component set', function () {
         assert.isFalse(component.set('foo', 'bar', 'event'))
         // check hooks
         assert.notCalled(component.postSet)
-    })
-
-    it('should set value for nested property with dot notation', function () {
-        // set value
-        assert.isTrue(component.set('foo.bar', 'bam', 'event'))
-        // check value
-        assert.deepEqual(component.data, {foo: {bar: 'bam'}})
-    })
-
-    it('should set value for nested property with array notation', function () {
-        // set value
-        assert.isTrue(component.set('foo.bar[0]', 'bam', 'event'))
-        // check value
-        assert.deepEqual(component.data, {foo: {bar: ['bam']}})
-    })
-
-    it('should set value for nested property with object notation', function () {
-        // set value
-        assert.isTrue(component.set('foo.bar[0].baz["wtf"]', 'bam', 'event'))
-        // check value
-        assert.deepEqual(component.data, {foo: {bar: [ {baz: {wtf: 'bam'} } ] }})
     })
 
 })

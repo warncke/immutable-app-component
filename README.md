@@ -18,7 +18,7 @@ Given that there are already several large and actively developed UI frameworks
 out there why use Immutable App Component?
 
 What sets Immutable App Component apart is that it is specifically *not* meant
-for Single Page Apps (SPAs) and it specifically *is* designed to support
+for Single Page Apps (SPAs) and specifically *is* designed to support
 dynamic components that integrate into a traditional server rendered HTTP
 application.
 
@@ -174,12 +174,6 @@ JS syntax (e.g. my.deeply.nested[1].property).
 
 This is a two-way binding so updates to the component data will also update
 the bound element.
-
-The bound element can be either inside or outside of the component.
-
-If the bound element is inside the component then data changes triggered by the
-element will not cause the component to re-render and external data changes
-will be set on the element instead of doing a full re-render.
 
 #### get
 
@@ -389,17 +383,20 @@ modify and extend default component methods.
         set: function (args) {},
     }
 
+The server side of a component can have three methods: `get`, `new` and `set`.
+
+All of these methods are optional.
+
 #### get
 
 The get method is called whenever a client makes a `refresh` request to the
 server. The resulting data will be returned to the client and used to
-re-render the component. This method is optional.
+re-render the component.
 
 #### new
 
 The new method returns the initial data state for the component. `new` must be
-called with a single object as arguments and should return a plain object. This
-method is required.
+called with a single object as arguments and should return a plain object.
 
 #### set
 
