@@ -11,9 +11,9 @@ module.exports = {
     },
 }
 
-function getTest (args) {
+async function getTest (args) {
     // create new foo component
-    var foo = this.component.foo.new()
+    var foo = await this.component.foo.new()
     // return component for template
     return {
         components: {

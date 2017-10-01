@@ -1,6 +1,6 @@
 'use strict'
 
-modules.exports = {
+module.exports = {
     refreshInterval: 1000,
     preRefresh: function (args) {
 
