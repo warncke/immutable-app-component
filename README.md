@@ -73,14 +73,25 @@ the component lifecycle with other javascript on the page.
       |     |
       |     +-- my-component
       |     |     |
+      |     |     +-- helpers
+      |     |     |     |
+      |     |     |     +-- foo.js
+      |     |     |
+      |     |     +-- partials
+      |     |     |     |
+      |     |     |     +-- foo.hbs
+      |     |     |
       |     |     +-- my-component.css
       |     |     +-- my-component.hbs
       |     |     +-- my-component.client.js
+      |     |     +-- my-component.script.js
       |     |     +-- my-component.server.js
 
 By default each component is stored in a separate folder in the `components`
 directory at the root of the Immutable App directory where other default
 directories like `app`, `assets`, `helpers` and `partials` are stored.
+
+Components do not share templates, partials or helpers with the main app.
 
 In this example the `my-component.server.js` file contains the server side
 component definition which must be a plain object that can be passed to
@@ -90,12 +101,24 @@ component definition which must be a plain object that can be passed to
 must be a plain object that can be passed to `new ImmutableAppComponent`
 in the client browser.
 
+`my-component.script.js` contains raw javascript that will be executed after
+the `ImmutableAppComponent` is instantiated in the browser. This script will
+be wrapped inside an anonymous function, run in `strict` mode and have the
+component available in scope as `component`.
+
 `my-component.hbs` is the component template. This template will be use to
 render the component on the server. It will also be compiled and delivered to
 the client so that the component can be re-rendered by the client.
 
 `my-component.css` is an optional stylesheet file that will be delivered to
 the client.
+
+`helpers` may contain one or more helpers. helpers can be defined either as
+an object with names pointing to functions or by exporting a function, in
+which case the name of the file will be used for the name of the helper.
+
+`partials` may contain one or more partials. The name of the file will be used
+as the name of the partial.
 
 Like [models](https://www.npmjs.com/package/immutable-core-model),
 [controllers](https://www.npmjs.com/package/immutable-core-controller)
@@ -119,12 +142,14 @@ extended and overriden by other modules required later in your app.
     function getPage (args) {
         var myComponent = await this.component.myComponent.new({ ... })
 
-        return {myComponent: myComponent}
+        return {
+            components: {myComponent: myComponent}
+        }
     }
 
     // template
 
-    <...>{{myComponent}}</...>
+    <...>{{components.myComponent}}</...>
 
 
 In controller methods components can be accessed via `this.component`. The
