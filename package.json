@@ -1,11 +1,11 @@
 {
   "author": "Ersun Warncke <ersun.warncke@gmail.com>",
   "dependencies": {
-    "immutable-app": "0.15.5",
+    "immutable-app": "0.15.7",
     "immutable-core": "2.2.6",
-    "immutable-core-component": "0.0.4",
+    "immutable-core-component": "0.0.5",
     "immutable-error": "0.1.1",
-    "immutable-global": "0.1.0"
+    "immutable-global": "0.1.1"
   },
   "description": "Dynamic UI components for Immutable App",
   "devDependencies": {
@@ -37,5 +37,5 @@
   "scripts": {
     "test": "mocha"
   },
-  "version": "0.0.8"
+  "version": "0.0.9"
 }
