@@ -2,7 +2,7 @@
   "author": "Ersun Warncke <ersun.warncke@gmail.com>",
   "dependencies": {
     "immutable-app": "0.15.7",
-    "immutable-core": "2.2.6",
+    "immutable-core": "2.2.7",
     "immutable-core-component": "0.0.5",
     "immutable-error": "0.1.1",
     "immutable-global": "0.1.1"
@@ -37,5 +37,5 @@
   "scripts": {
     "test": "mocha"
   },
-  "version": "0.0.9"
+  "version": "0.0.10"
 }
