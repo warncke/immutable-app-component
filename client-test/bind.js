@@ -115,7 +115,7 @@ describe('immutable-app-component bind', function () {
 
     it('should set value on input', function () {
         // do bind
-        assert.isTrue(component.bind('textarea', 'textInput'))
+        assert.isTrue(component.bind('textarea', 'textarea'))
         // set value
         component.set('textarea', 'foo')
         // get element

@@ -1,11 +1,22 @@
-{{newMessage}}
+<div>
+    <h2><em>{{newMessage}}</em></h2>
+</div>
 
-You have entered {{textInput}}
+<div>You have entered: {{textInput}}</div>
 
-You have checked {{checkboxInput}}
+<div>You have checked: {{checkboxInput}}</div>
 
-You have selected {{radioInput}}
+<div>
+    You have radio'd:
+    {{#if radioInputYes}}
+        yes
+    {{else if radioInputNo}}
+        no
+    {{else if radioInputMaybe}}
+        maybe
+    {{/if}}
+</div>
 
-You have selected {{select}}
+<div>You have selected {{select}}</div>
 
-You have entered {{textarea}}
+<div>You have entered {{textarea}}</div>
