@@ -2,16 +2,16 @@
   "author": "Ersun Warncke <ersun.warncke@gmail.com>",
   "dependencies": {
     "immutable-app": "0.15.9",
-    "immutable-core": "2.2.8",
-    "immutable-core-component": "0.0.8",
-    "immutable-error": "0.1.1",
-    "immutable-global": "0.1.1"
+    "immutable-core": "2.2.9",
+    "immutable-core-component": "0.0.9",
+    "immutable-error": "0.1.2",
+    "immutable-global": "0.1.2"
   },
   "description": "Dynamic UI components for Immutable App",
   "devDependencies": {
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
-    "immutable-database-mariasql": "1.3.26",
+    "immutable-database-mariasql": "1.3.28",
     "karma": "1.7.1",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "2.2.0",
@@ -37,5 +37,5 @@
   "scripts": {
     "test": "mocha --exit && karma start"
   },
-  "version": "0.0.14"
+  "version": "0.0.15"
 }
