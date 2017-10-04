@@ -2,8 +2,8 @@
   "author": "Ersun Warncke <ersun.warncke@gmail.com>",
   "dependencies": {
     "immutable-app": "0.15.9",
-    "immutable-core": "2.2.7",
-    "immutable-core-component": "0.0.6",
+    "immutable-core": "2.2.8",
+    "immutable-core-component": "0.0.8",
     "immutable-error": "0.1.1",
     "immutable-global": "0.1.1"
   },
@@ -37,5 +37,5 @@
   "scripts": {
     "test": "mocha --exit && karma start"
   },
-  "version": "0.0.13"
+  "version": "0.0.14"
 }
