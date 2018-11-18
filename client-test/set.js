@@ -8,7 +8,7 @@ describe('immutable-app-component set', function () {
 
     beforeEach(function () {
         // create sanbox for each test
-        sandbox = sinon.sandbox.create()
+        sandbox = sinon.createSandbox()
         // reset global data
         ImmutableAppComponent.reset()
         // instantiate new component instance

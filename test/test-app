@@ -1,8 +1,9 @@
 'use strict'
 
 const ImmutableAccessControl = require('immutable-access-control')
-const ImmutableDatabaseMariaSQL = require('immutable-database-mariasql')
 const ImmutableApp = require('immutable-app')
+const ImmutableCoreModel = require('immutable-core-model')
+
 const ImmutableAppComponent = require('../lib/immutable-app-component')
 
 const dbHost = process.env.DB_HOST || 'localhost'
@@ -12,14 +13,11 @@ const dbUser = process.env.DB_USER || 'root'
 
 // use the same params for all connections
 const connectionParams = {
-    charset: 'utf8',
-    db: dbName,
+    database: dbName,
     host: dbHost,
     password: dbPass,
     user: dbUser,
 }
-// create database connection to use for testing
-var database = new ImmutableDatabaseMariaSQL(connectionParams)
 
 // get access control provider
 var accessControl = new ImmutableAccessControl()
@@ -29,12 +27,14 @@ accessControl.strict = false
 run().catch(err => console.error(err.stack))
 
 async function run () {
+    var mysql = await ImmutableCoreModel.createMysqlConnection(connectionParams)
+
     var app = ImmutableApp('test-app')
     // set configuration for testing
     app.config({
         // set default database
-        database: {
-            default: database,
+        mysql: {
+            default: mysql,
         },
     })
     // start server

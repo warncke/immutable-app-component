@@ -1,28 +1,25 @@
 {
   "author": "Ersun Warncke <ersun.warncke@gmail.com>",
   "dependencies": {
-    "immutable-app": "0.15.49",
-    "immutable-core": "2.2.38",
-    "immutable-core-component": "0.0.43",
-    "immutable-error": "0.1.4",
-    "immutable-global": "0.2.2"
+    "immutable-app": "0.16.1",
+    "immutable-core": "2.3.3",
+    "immutable-core-component": "0.0.45",
+    "immutable-error": "0.1.5",
+    "immutable-global": "0.2.3"
   },
   "description": "Dynamic UI components for Immutable App",
   "devDependencies": {
-    "chai": "4.1.2",
+    "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "immutable-database-mariasql": "1.3.47",
-    "karma": "2.0.0",
+    "karma": "3.1.1",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-mocha": "1.3.0",
-    "karma-phantomjs-launcher": "1.0.4",
     "karma-sinon": "1.0.5",
-    "karma-sinon-chai": "1.3.3",
-    "mocha": "4.1.0",
-    "phantomjs": "2.1.7",
-    "sinon": "4.1.5",
-    "sinon-chai": "2.14.0"
+    "karma-sinon-chai": "2.0.2",
+    "mocha": "5.2.0",
+    "sinon": "7.1.1",
+    "sinon-chai": "3.2.0"
   },
   "directories": {
     "test": "test"
@@ -37,5 +34,5 @@
   "scripts": {
     "test": "mocha --exit && karma start"
   },
-  "version": "0.0.87"
+  "version": "0.0.88"
 }
